@@ -31,7 +31,28 @@ public double getRadio() {
     return radio;
 }
 
-
+public double pesoEnSuperficie(double peso) {
+    return masaHumano(peso) * this.gravedadSuperficial();
 }
 
+public double masaHumano(double peso) {
+    return peso / this.gravedadSuperficial(Tierra);
+}
 
+public double gravedadSuperficial() {
+    return G * this.masa / (this.radio * this.radio);
+}
+
+public double gravedadSuperficial(Planeta planeta) {
+    return G * planeta.getMasa() / (planeta.getRadio() * planeta.getRadio());
+}
+
+public static EnumSet<Planeta> getPlanetasTerrestres() {
+		return EnumSet.range(Mercurio, Marte);
+	}
+
+public static EnumSet<Planeta> getGigantesGaseosos() {
+	return EnumSet.complementOf(getPlanetasTerrestres());
+}
+
+}
